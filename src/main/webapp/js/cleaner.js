@@ -16,5 +16,6 @@ function cleanInput() {
 function cleanTable() {
     let tBody = document.querySelector('#table > tbody');
     tBody.innerHTML = '';
+    resetCircle();
     sendClearRequest();
 }

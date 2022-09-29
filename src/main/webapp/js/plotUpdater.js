@@ -41,6 +41,12 @@ function moveCircle(xValue, yValue, rValue) {
     circle.setAttribute("cy",150 - yValue * 100 / rValue);
 }
 
+function resetCircle() {
+    let circle = document.querySelector("#circle");
+    circle.setAttribute("cx",150);
+    circle.setAttribute("cy",150);
+}
+
 function changeCircleR(rValue) {
     let circle = document.querySelector("#circle");
     circle.setAttribute("cx",150 + prevX * 100 / rValue);

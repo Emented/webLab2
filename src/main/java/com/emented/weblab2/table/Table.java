@@ -7,11 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@Setter
-@Getter
+@Value
 public class Table implements Serializable {
-    private List<TableRow> tableElements = new ArrayList<>();
+    List<TableRow> tableElements = new ArrayList<>();
 }
