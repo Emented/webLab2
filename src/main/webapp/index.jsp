@@ -76,6 +76,10 @@
                 background-color: white;
             }
 
+            .plot:hover {
+                cursor: crosshair;
+            }
+
             .values {
                 margin: 0;
                 width: 100%;
@@ -248,6 +252,8 @@
                     <text x="170" y="102.5" id="r2">R/2</text>
                     <text x="170" y="202.5" id="-r2">-R/2</text>
                     <text x="170" y="252.5" id="-r">-R</text>
+                    <!-- Точка -->
+                    <circle id="circle" r="5" cx="150" cy="150"></circle>
                 </svg>
             </td>
             <td class="user_input">
@@ -337,5 +343,6 @@
     <script src="./js/plotUpdater.js"></script>
     <script src="./js/cleaner.js"></script>
     <script src="./js/init.js"></script>
-    <script src="js/jsonWorker.js"></script>
+    <script src="./js/jsonWorker.js"></script>
+    <script src="./js/httpController.js"></script>
 </html>

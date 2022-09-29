@@ -14,6 +14,7 @@ function changeR(value) {
         })
     } else {
         let rInt = parseInt(value);
+        changeCircleR(rInt);
         document.querySelectorAll('#r').forEach(element => {
             element.innerHTML = rInt.toString();
         })
@@ -27,4 +28,21 @@ function changeR(value) {
             element.innerHTML = (-rInt / 2).toString();
         })
     }
+}
+
+let prevX = 0;
+let prevY = 0;
+
+function moveCircle(xValue, yValue, rValue) {
+    let circle = document.querySelector("#circle");
+    prevX = xValue;
+    prevY = yValue;
+    circle.setAttribute("cx",150 + xValue * 100 / rValue);
+    circle.setAttribute("cy",150 - yValue * 100 / rValue);
+}
+
+function changeCircleR(rValue) {
+    let circle = document.querySelector("#circle");
+    circle.setAttribute("cx",150 + prevX * 100 / rValue);
+    circle.setAttribute("cy",150 - prevY * 100 / rValue);
 }

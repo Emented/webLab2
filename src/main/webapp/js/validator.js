@@ -46,3 +46,7 @@ function validateValues(x, y, r) {
 
     return validationSuccess;
 }
+
+function validateR(r) {
+    return !(r === null || r === '' || isNaN(r));
+}

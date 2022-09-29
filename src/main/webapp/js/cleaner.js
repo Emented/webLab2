@@ -16,15 +16,5 @@ function cleanInput() {
 function cleanTable() {
     let tBody = document.querySelector('#table > tbody');
     tBody.innerHTML = '';
-    $.ajax({
-        type: "PUT",
-        url: "./controller",
-        data: {'cleanTable': true},
-        success: function(data) {
-            alert(data);
-        },
-        error: function(data) {
-            alert(data);
-        }
-    });
+    sendClearRequest();
 }
