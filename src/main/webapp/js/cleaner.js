@@ -17,7 +17,7 @@ function cleanTable() {
     let tBody = document.querySelector('#table > tbody');
     tBody.innerHTML = '';
     $.ajax({
-        type: "DELETE",
+        type: "PUT",
         url: "./controller",
         data: {'cleanTable': true},
         success: function(data) {

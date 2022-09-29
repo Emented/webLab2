@@ -5,13 +5,13 @@ function parseJSON(data) {
     tableRows.forEach(function (tableRow) {
         let date = new Date(tableRow.date * 1000);
         result += "<tr>" +
-            "<td>" + date.toISOString() + "</td>" +
-            "<td>" + tableRow.scriptTime + "</td>" +
+            "<td>" + date.toISOString().slice(0, 19).replace('T', ' ') + "</td>" +
+            "<td>" + Number(tableRow.scriptTime).toFixed(2) + "</td>" +
             "<td>" + tableRow.x + "</td>" +
             "<td>" + tableRow.y + "</td>" +
             "<td>" + tableRow.r + "</td>" +
-            "<td>" + tableRow.hit + "</td>" +
+            "<td>" + (tableRow.hit === true ? 'HIT' : 'MISS') + "</td>" +
             "</tr>";
-    })
+    });
     return result;
 }

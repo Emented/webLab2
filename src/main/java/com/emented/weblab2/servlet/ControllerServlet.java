@@ -1,8 +1,6 @@
 package com.emented.weblab2.servlet;
 
 
-import com.emented.weblab2.util.Validator;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,7 +43,7 @@ public class ControllerServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String cleanTableParam = request.getParameter("cleanTable");
         if (cleanTableParam == null) {
             PrintWriter writer = response.getWriter();

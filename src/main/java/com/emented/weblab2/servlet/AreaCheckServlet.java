@@ -70,7 +70,7 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         table.getTableElements().clear();
         PrintWriter writer = response.getWriter();
         writer.println("Table was cleared successfully!");
