@@ -12,6 +12,7 @@ function parseJSON(data) {
             "<td>" + tableRow.r + "</td>" +
             "<td>" + (tableRow.hit === true ? 'HIT' : 'MISS') + "</td>" +
             "</tr>";
+        drawDot(tableRow.x,tableRow.y, tableRow.r);
     });
     return result;
 }

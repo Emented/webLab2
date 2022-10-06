@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<jsp:useBean id="table" class="com.emented.weblab2.table.Table" scope="session"/>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -252,8 +253,6 @@
                     <text x="170" y="102.5" id="r2">R/2</text>
                     <text x="170" y="202.5" id="-r2">-R/2</text>
                     <text x="170" y="252.5" id="-r">-R</text>
-                    <!-- Точка -->
-                    <circle id="circle" r="5" cx="150" cy="150"></circle>
                 </svg>
             </td>
             <td class="user_input">

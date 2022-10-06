@@ -20,21 +20,23 @@ public class AreaCheckServlet extends HttpServlet {
 
     private Validator validator;
     private HitChecker hitChecker;
-    private Table table;
-
     private ObjectMapper objectMapper;
 
     @Override
     public void init() {
         validator = new Validator();
         hitChecker = new HitChecker();
-        table = new Table();
         objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        Table table = (Table) request.getSession().getAttribute("table");
+        if (table == null) {    // if we don't use browser
+            table = new Table();
+            request.getSession().setAttribute("table", table);
+        }
         String xParam = request.getParameter("x");
         String yParam = request.getParameter("y");
         String rParam = request.getParameter("r");
@@ -56,24 +58,6 @@ public class AreaCheckServlet extends HttpServlet {
         PrintWriter writer = response.getWriter();
         String json = objectMapper.writeValueAsString(table);
         writer.println(json);
-
-        writer.close();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        PrintWriter writer = response.getWriter();
-        String json = objectMapper.writeValueAsString(table);
-        writer.println(json);
-
-        writer.close();
-    }
-
-    @Override
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        table.getTableElements().clear();
-        PrintWriter writer = response.getWriter();
-        writer.println("Table was cleared successfully!");
 
         writer.close();
     }

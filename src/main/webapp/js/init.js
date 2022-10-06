@@ -5,6 +5,7 @@ const plot = document.querySelector('.plot svg');
 
 function init() {
     sendGetRequest();
+    hideDots();
     buttons.forEach(element => {
         element.onclick = selectX;
     });
@@ -15,7 +16,10 @@ function init() {
     });
     plot.addEventListener('click', function (event) {
         let rValue = document.querySelector("[name='r']:checked")?.value;
-        if (!validateR(rValue)) return;
+        if (!validateR(rValue)) {
+            alert("Не выбрано значение R!");
+            return;
+        }
 
         let target = this.getBoundingClientRect();
         let x = Math.round(event.clientX - target.left - 22);
@@ -23,7 +27,7 @@ function init() {
         let xValue = Math.round((x - 150) / (100 / rValue));
         let yValue = ((y - 150) / (-100 / rValue)).toFixed(3);
         sendCheckRequest(xValue, yValue, rValue);
-    })
+    });
 }
 
 function selectX() {

@@ -6,11 +6,10 @@ function sendCheckRequest(xValue, yValue, rValue) {
     if (validateValues(xValue, yValue, rValue)) {
         $.ajax({
             type: 'POST',
-            url: './controller',
+            url: './controller/check-point',
             data: {'x': xValue, 'y': yValue, 'r': rValue, 'offset': offset},
             success: function (response) {
                 document.querySelector('#table > tbody').innerHTML = parseJSON(response);
-                moveCircle(parseInt(xValue), parseFloat(yValue), parseInt(rValue));
             },
             error: function (jqXHR) {
                 alert(jqXHR.text);
@@ -21,9 +20,8 @@ function sendCheckRequest(xValue, yValue, rValue) {
 
 function sendClearRequest() {
     $.ajax({
-        type: "PUT",
-        url: "./controller",
-        data: {'cleanTable': true},
+        type: "DELETE",
+        url: "./controller/clear-table",
         success: function(data) {
             alert(data);
         },
@@ -36,8 +34,8 @@ function sendClearRequest() {
 function sendGetRequest() {
     $.ajax({
         type: "GET",
-        url: "./controller",
-        data: {"getTable": true},
+        url: "./controller/get-table",
+        async: false,
         success: function(data) {
             document.querySelector('#table > tbody').innerHTML = parseJSON(data);
         },
