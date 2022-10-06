@@ -2,6 +2,7 @@ function parseJSON(data) {
     let json = JSON.parse(data);
     let tableRows = json.tableElements;
     let result = "";
+    removeDots();
     tableRows.forEach(function (tableRow) {
         let date = new Date(tableRow.date * 1000);
         result += "<tr>" +

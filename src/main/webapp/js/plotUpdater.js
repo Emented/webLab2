@@ -1,4 +1,6 @@
 const dots = [];
+const cont = document.querySelector("svg");
+let firstDrow = true;
 let prevR = 1;
 
 function changeR(value) {
@@ -42,6 +44,13 @@ function hideDots() {
     }
 }
 
+function removeDots() {
+    for (let i = dots.length - 1; i >= 0; i--) {
+        cont.removeChild(dots[i]);
+        dots.pop();
+    }
+}
+
 function changeDotsR(rValue) {
     for (let i = 0; i < dots.length; i++) {
         let dot = dots[i];
@@ -54,10 +63,14 @@ function changeDotsR(rValue) {
 }
 
 function drawDot(xValue, yValue, rValue) {
-    let cont = document.querySelector("svg");
     let svgns = "http://www.w3.org/2000/svg";
 
     let circle = document.createElementNS(svgns, 'circle');
+
+    if (firstDrow) {
+        rValue = 1;
+        firstDrow = false;
+    }
 
     circle.setAttributeNS(null, 'cx', 150 + xValue * 100 / rValue);
     circle.setAttributeNS(null, 'cy', 150 - yValue * 100 / rValue);

@@ -14,12 +14,8 @@ function cleanInput() {
 }
 
 function cleanTable() {
-    let cont = document.querySelector("svg");
     let tBody = document.querySelector('#table > tbody');
     tBody.innerHTML = '';
-    for (let i = dots.length - 1; i >= 0; i--) {
-        cont.removeChild(dots[i]);
-        dots.pop();
-    }
+    removeDots();
     sendClearRequest();
 }
