@@ -5,8 +5,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @WebFilter(value = "/*")
 public class HeadersFilter implements Filter {
@@ -21,9 +21,9 @@ public class HeadersFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
-        Map<String, Long> headers = (HashMap<String, Long>) context.getAttribute("headers");
+        Map<String, Long> headers = (ConcurrentHashMap<String, Long>) context.getAttribute("headers");
         if (headers == null) {
-            headers = new HashMap<>();
+            headers = new ConcurrentHashMap<>();
             context.setAttribute("headers", headers);
         }
         Enumeration<String> reqHeaderNames = req.getHeaderNames();
