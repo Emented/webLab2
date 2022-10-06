@@ -1,3 +1,5 @@
+let firstDraw = true;
+
 function parseJSON(data) {
     let json = JSON.parse(data);
     let tableRows = json.tableElements;
@@ -13,7 +15,8 @@ function parseJSON(data) {
             "<td>" + tableRow.r + "</td>" +
             "<td>" + (tableRow.hit === true ? 'HIT' : 'MISS') + "</td>" +
             "</tr>";
-        drawDot(tableRow.x,tableRow.y, tableRow.r);
+        drawDot(tableRow.x,tableRow.y, firstDraw);
     });
+    firstDraw = false;
     return result;
 }

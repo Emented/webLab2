@@ -1,6 +1,5 @@
 const dots = [];
 const cont = document.querySelector("svg");
-let firstDrow = true;
 let prevR = 1;
 
 function changeR(value) {
@@ -62,14 +61,15 @@ function changeDotsR(rValue) {
     }
 }
 
-function drawDot(xValue, yValue, rValue) {
+function drawDot(xValue, yValue, firstDraw) {
     let svgns = "http://www.w3.org/2000/svg";
 
     let circle = document.createElementNS(svgns, 'circle');
-
-    if (firstDrow) {
+    let rValue;
+    if (firstDraw) {
         rValue = 1;
-        firstDrow = false;
+    } else {
+        rValue = document.querySelector("[name='r']:checked")?.value;
     }
 
     circle.setAttributeNS(null, 'cx', 150 + xValue * 100 / rValue);
