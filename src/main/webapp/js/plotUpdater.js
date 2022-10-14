@@ -53,7 +53,7 @@ function removeDots() {
 function changeDotsR(rValue) {
     for (let i = 0; i < dots.length; i++) {
         let dot = dots[i];
-        dot.setAttributeNS(null, 'style', "opacity: 1;");
+        dot.setAttributeNS(null, 'style', "fill: black; stroke: black; opacity: 1;");
         let xCoordinate = (dot.getAttributeNS(null, 'cx') - 150) * prevR / rValue + 150;
         let yCoordinate = (dot.getAttributeNS(null, 'cy') - 150) * prevR / rValue + 150;
         dot.setAttributeNS(null, 'cx', xCoordinate);

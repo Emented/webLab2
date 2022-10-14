@@ -6,6 +6,8 @@ import com.emented.weblab2.util.HitChecker;
 import com.emented.weblab2.util.Validator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +25,8 @@ public class AreaCheckServlet extends HttpServlet {
     private ObjectMapper objectMapper;
 
     @Override
-    public void init() {
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
         validator = new Validator();
         hitChecker = new HitChecker();
         objectMapper = new ObjectMapper();

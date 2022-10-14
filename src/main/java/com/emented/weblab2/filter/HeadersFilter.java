@@ -21,11 +21,7 @@ public class HeadersFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
-        Map<String, Long> headers = (ConcurrentHashMap<String, Long>) context.getAttribute("headers");
-        if (headers == null) {
-            headers = new ConcurrentHashMap<>();
-            context.setAttribute("headers", headers);
-        }
+        Map<String, Long> headers = getHeaders("headers");
         Enumeration<String> reqHeaderNames = req.getHeaderNames();
         while (reqHeaderNames.hasMoreElements()) {
             String currentHeader = reqHeaderNames.nextElement();
@@ -34,5 +30,16 @@ public class HeadersFilter implements Filter {
         System.out.println(headers);
         context.setAttribute("headers", headers);
         chain.doFilter(request, response);
+    }
+
+    public synchronized Map<String, Long> getHeaders(String attributeName) {
+        Object headers = context.getAttribute(attributeName);
+
+        if (headers == null) {
+            Map<String, Long> headersMap = new ConcurrentHashMap<>();
+            context.setAttribute(attributeName, headersMap);
+            return headersMap;
+        }
+        return (Map<String, Long>) headers;
     }
 }

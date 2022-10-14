@@ -4,6 +4,7 @@ package com.emented.weblab2.servlet;
 import com.emented.weblab2.table.Table;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +21,8 @@ public class ControllerServlet extends HttpServlet {
 
     private ObjectMapper objectMapper;
     @Override
-    public void init() {
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
         objectMapper = new ObjectMapper();
         objectMapper.findAndRegisterModules();
     }
